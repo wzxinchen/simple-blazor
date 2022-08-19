@@ -21,8 +21,7 @@ namespace SimpleBlazor
             routers.Add("#tabs", typeof(TabDemo));
             //routers.Add("#playground", typeof(router2));
             var template = new Layout();
-            var html = template.RenderToHtml();
-            Document.Body.Html(html);
+            template.Render(true);
             //Console.WriteLine("Hello, World!");
         }
 
@@ -34,7 +33,18 @@ namespace SimpleBlazor
             {
                 return;
             }
-            var method = component.GetType().GetMethod(obj.Split(':')[1], System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.InvokeMethod);
+
+            var methodName = obj.Split(':')[1];
+            var componentType = component.GetType();
+            if (componentType.Name.EndsWith("Proxy"))
+            {
+                componentType = componentType.BaseType;
+            }
+            var method = componentType.GetMethod(methodName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.InvokeMethod);
+            if (method == null)
+            {
+                throw new Exception(componentType.Name + "." + methodName + "，未找到");
+            }
             method.Invoke(component, null);
         }
 

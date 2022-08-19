@@ -11,9 +11,7 @@ namespace SimpleBlazor.Antd
     public partial class Menu
     {
         [Parameter]
-        public Action<MenuItem> OnNavigate { get; set; }
-        [Parameter]
-        public RenderFragment ChildContent { get; set; }
+        public virtual Action<MenuItem> OnNavigate { get; set; }
 
         internal void NavigateTo(MenuItem menuItem)
         {

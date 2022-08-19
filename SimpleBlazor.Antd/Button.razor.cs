@@ -10,9 +10,12 @@ namespace SimpleBlazor.Antd
     public partial class Button
     {
         [Parameter]
-        public string Type { get; set; }
+        public virtual string Type { get; set; }
 
         [Parameter]
-        public string Href { get; set; }
+        public virtual string Href { get; set; }
+
+        [Parameter]
+        public virtual string Text { get; set; }
     }
 }

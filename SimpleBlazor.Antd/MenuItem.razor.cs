@@ -12,15 +12,12 @@ namespace SimpleBlazor.Antd
     public partial class MenuItem : IOwnerBy
     {
         [Parameter]
-        public bool IsSelected { get; set; }
+        public virtual bool IsSelected { get; set; }
         [Parameter]
-        public string Route { get; set; }
+        public virtual string Route { get; set; }
 
         [Parameter]
-        public RenderFragment ChildContent { get; set; }
-
-        [Parameter]
-        public object Owner { get; set; }
+        public virtual object Owner { get; set; }
 
         private void NavigateTo()
         {

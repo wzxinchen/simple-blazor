@@ -8,6 +8,10 @@ namespace SimpleBlazor.Pages
 {
     public partial class TabDemo
     {
+        private void Test1()
+        {
 
+        }
+        public virtual string A { get; set; }
     }
 }

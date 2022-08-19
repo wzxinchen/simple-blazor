@@ -10,19 +10,16 @@ namespace SimpleBlazor.Antd
     public partial class TabHeader : IOwnerBy
     {
         [Parameter]
-        public string Title { get; set; }
+        public virtual string Title { get; set; }
 
         [Parameter]
-        public object Owner { get; set; }
+        public virtual object Owner { get; set; }
 
         [Parameter]
-        public RenderFragment ChildContent { get; set; }
+        public virtual bool IsActive { get; set; }
 
         [Parameter]
-        public bool IsActive { get; set; }
-
-        [Parameter]
-        public Action OnClick { get; set; }
+        public virtual Action OnClick { get; set; }
 
         protected override void OnParametersSet()
         {

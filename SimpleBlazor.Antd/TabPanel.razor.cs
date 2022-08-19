@@ -11,13 +11,10 @@ namespace SimpleBlazor.Antd
     public partial class TabPanel : IOwnerBy
     {
         [Parameter]
-        public object Owner { get; set; }
+        public virtual object Owner { get; set; }
 
         [Parameter]
-        public RenderFragment ChildContent { get; set; }
-
-        [Parameter]
-        public bool IsActive { get; set; }
+        public virtual bool IsActive { get; set; }
 
         protected override void OnParametersSet()
         {

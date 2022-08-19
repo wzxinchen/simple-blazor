@@ -12,35 +12,28 @@ using System.Text;
 #pragma warning disable BL0006 // Do not use RenderTree types
 namespace SimpleBlazor.Antd
 {
-    public class SimpleComponentBase<TModel> : SimpleComponentBase
-        where TModel : class, new()
+    public class SimpleComponentBase : ComponentBase, IDisposable
     {
-        private static ProxyGenerator _proxyGenerator = new ProxyGenerator();
+        internal static ProxyGenerator _proxyGenerator = new ProxyGenerator();
         internal PropertyInterceptor _propertyInterceptor = new PropertyInterceptor();
-        public TModel Data { get; }
+        internal virtual string ParentSelector { get; set; }
+        internal static IDictionary<int, object> ComponentsMap { get; } = new Dictionary<int, object>();
 
+        [Parameter]
+        public virtual RenderFragment ChildContent { get; set; }
         public SimpleComponentBase()
         {
-            Data = _proxyGenerator.CreateClassProxy<TModel>(_propertyInterceptor);
+            ComponentsMap.Add(GetHashCode(), this);
         }
 
-        protected void Render()
+        public void Render(bool force = false)
         {
-            if (_propertyInterceptor.StateHasChanged)
+            if (_propertyInterceptor.StateHasChanged || force)
             {
                 Console.WriteLine("StateHasChanged");
                 var html = RenderToHtml();
                 GetContainer().Html(html);
             }
-        }
-    }
-    public class SimpleComponentBase : ComponentBase, IDisposable
-    {
-        internal virtual string ParentSelector { get; set; }
-        internal static IDictionary<int, object> ComponentsMap { get; } = new Dictionary<int, object>();
-        public SimpleComponentBase()
-        {
-            ComponentsMap.Add(GetHashCode(), this);
         }
 
         public class KlassBuilder
@@ -189,7 +182,7 @@ namespace SimpleBlazor.Antd
                         htmlBuilder.Append("</").Append(whilePreviousFrame.OpenFrame.ElementName).Append('>');
                         break;
                     case RenderTreeFrameType.Component:
-                        var simpleComponentByType = (SimpleComponentBase)Activator.CreateInstance(whilePreviousFrame.OpenFrame.ComponentType);
+                        var simpleComponentByType = (SimpleComponentBase)_proxyGenerator.CreateClassProxy(whilePreviousFrame.OpenFrame.ComponentType, _propertyInterceptor);
                         simpleComponentByType.OnInitialized();
                         simpleComponentByType.ParentSelector = $"[_id=\"{whilePreviousFrame.Id}\"]";
                         var attrs = whilePreviousFrame.Attributes.ToDictionary(x => x.Key, x => x.Value);
