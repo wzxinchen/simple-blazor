@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Version>1.3.7</Version>
+		<IsTool>true</IsTool>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="build\SimpleBlazor.Task.targets" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="build\SimpleBlazor.Task.targets">
+			<Pack>true</Pack>
+			<PackagePath>build</PackagePath>
+		</Content>
+		<Content Include="$(NuGetPackageRoot)/Microsoft.AspNetCore.Razor.Language/6.0.8/lib/netstandard2.0/*.dll">
+			<Pack>true</Pack>
+			<PackagePath>tools</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Visible>false</Visible>
+		</Content>
+		<Content Include="$(NuGetPackageRoot)/system.runtime.compilerservices.unsafe/4.5.2/lib/netstandard2.0/*.dll">
+			<Pack>true</Pack>
+			<PackagePath>tools</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Visible>false</Visible>
+		</Content>
+		<Content Include="$(NuGetPackageRoot)/System.Memory/4.5.2/lib/netstandard2.0/*.dll">
+			<Pack>true</Pack>
+			<PackagePath>tools</PackagePath>
+			<Visible>false</Visible>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Visible>false</Visible>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Razor.Language" Version="6.0.8">
+			<PrivateAssets>All</PrivateAssets>
+			<IncludeAssets>all</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.2.0" PrivateAssets="all">
+		  <ExcludeAssets>runtime</ExcludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+</Project>

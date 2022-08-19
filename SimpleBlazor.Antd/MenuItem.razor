@@ -1,0 +1,4 @@
+﻿@inherits SimpleComponentBase
+<li class="@Klass.Append("ant-menu-item").AppendIf("ant-menu-item-selected",IsSelected)" style="padding-left:24px;" @onclick="NavigateTo">
+    @ChildContent
+</li>

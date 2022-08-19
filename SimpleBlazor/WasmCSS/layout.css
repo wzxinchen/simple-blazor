@@ -1,0 +1,21 @@
+﻿header {
+    display: flex;
+}
+
+html {
+    height: 100%;
+    display: flex;
+}
+
+body {
+    flex: 1;
+    display: flex;
+}
+
+    body > .ant-menu {
+        width: 200px;
+    }
+
+    body > #page_content {
+        padding: 10px;
+    }

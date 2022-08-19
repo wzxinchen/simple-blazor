@@ -1,0 +1,7 @@
+﻿<Project>
+	<UsingTask AssemblyFile="$(MSBuildThisFileDirectory)../tools/SimpleBlazor.Task.dll" TaskName="GenerateTask" />
+
+	<Target Name="GenerateSimpleBlazor" BeforeTargets="Compile;Link">
+		<GenerateTask></GenerateTask>
+	</Target>
+</Project>

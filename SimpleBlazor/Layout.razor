@@ -1,0 +1,27 @@
+﻿@inherits SimpleBlazor.Antd.LayoutComponentBase<LayoutModel>
+<Menu OnNavigate="ChangeDemo">
+    <MenuItem Route="buttons">按钮</MenuItem>
+    <MenuItem Route="inputs">输入框</MenuItem>
+    <MenuItem Route="tabs">Tabs</MenuItem>
+</Menu>
+@{
+    Console.WriteLine(Data.CurrentDemo);
+}
+@if (Data.CurrentDemo == "buttons")
+{
+    <Tab>
+        <Header>
+            <TabHeader Title="示例" IsActive="true"></TabHeader>
+            <TabHeader Title="代码"></TabHeader>
+        </Header>
+        <Panel>
+            <TabPanel IsActive="true">
+                示例
+            </TabPanel>
+            <TabPanel>
+                代码
+            </TabPanel>
+        </Panel>
+    </Tab>
+}
+@*<div id="page_content"></div>*@

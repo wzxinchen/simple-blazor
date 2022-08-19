@@ -1,0 +1,9 @@
+﻿<linker>
+	<assembly fullname="SimpleBlazor" />
+	<assembly fullname="SimpleBlazor.Antd" />
+	<assembly fullname="System.Private.CoreLib" />
+	<assembly fullname="SimpleBlazor.JavaScript" />
+	<assembly fullname="mscorlib" />
+	<assembly fullname="System.Core" />
+	<assembly fullname="Castle.Core" />
+</linker>

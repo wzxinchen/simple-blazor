@@ -1,0 +1,5 @@
+﻿@inherits SimpleComponentBase
+
+<div class="@Klass.Append("ant-tabs-tab").AppendIf("ant-tabs-tab-active",IsActive)" @onclick="OnClickInternal">
+    <div class="ant-tabs-tab-btn" tabindex="0">@Title</div>
+</div>
